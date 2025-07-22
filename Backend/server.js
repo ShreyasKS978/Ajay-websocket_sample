@@ -10,8 +10,8 @@ const path = require('path');
 
 // === Constants ===
 const SECRET_KEY = 'mysecretkey';
-const API_PORT = 3000;
-const LOGIN_PORT = 5501;
+const API_PORT = 3074;
+const LOGIN_PORT = 8204;
 
 // === Initialize Database ===
 initializeDatabase();
@@ -22,7 +22,7 @@ const apiServer = http.createServer(apiApp);
 const wss = new WebSocket.Server({ server: apiServer });
 
 // === Middleware ===
-apiApp.use(cors({ origin: 'http://localhost:5501', credentials: true }));
+apiApp.use(cors({ origin: 'http://13.232.2.77:8204', credentials: true }));
 apiApp.use(bodyParser.json());
 
 // === Login API ===
@@ -76,12 +76,12 @@ wss.on('connection', (ws, req) => {
 
 // === Start API + WebSocket Server ===
 apiServer.listen(API_PORT, () =>
-  console.log(`✅ Server + WebSocket running on http://localhost:${API_PORT}`)
+  console.log(`✅ Server + WebSocket running on http://13.232.2.77:${API_PORT}`)
 );
 
 // === Separate Express App for Login Static Page ===
 const loginApp = express();
 loginApp.use(express.static(path.join(__dirname, 'login')));
 loginApp.listen(LOGIN_PORT, () =>
-  console.log(`🚪 Login Page running on http://localhost:${LOGIN_PORT}`)
+  console.log(`🚪 Login Page running on http://13.232.2.77:${LOGIN_PORT}`)
 );
