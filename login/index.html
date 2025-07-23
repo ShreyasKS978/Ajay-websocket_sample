@@ -81,7 +81,7 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      const res = await fetch('http://13.232.2.77:3074/api/login', {
+      const res = await fetch('http://13.203.104.102:3074/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -90,7 +90,7 @@
 
       const data = await res.json();
       if (data.token) {
-        receiverFrame.src = `http://13.232.2.77:3074/receiver.html?token=${data.token}`;
+        receiverFrame.src = `http://13.203.104.102:3074/receiver.html?token=${data.token}`;
       } else {
         alert('Login failed');
       }
